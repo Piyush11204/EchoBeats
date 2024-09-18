@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
+   // this is about page
 export default function About() {
     return (
         <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
