@@ -16,7 +16,7 @@ export default function Home() {
         <section className="py-8 px-6">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-              Explore Popular Courses
+              Explore Popular <span className="text-fuchsia-600">Courses</span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {courses.map((course) => (

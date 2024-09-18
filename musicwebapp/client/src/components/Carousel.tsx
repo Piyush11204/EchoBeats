@@ -1,7 +1,8 @@
 // components/Carousel.js
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'next/image';
+
 const images = [
     '/carouselimages/1.png',
     '/carouselimages/5.png',
@@ -20,20 +21,38 @@ export default function Carousel() {
         setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
     };
 
+  
+    useEffect(() => {
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 3000); 
+
+        return () => clearInterval(interval); 
+    }, []);
+
     return (
-        <div className="relative">
+        <div className="relative w-full max-w-7xl mx-auto">
             <div className="overflow-hidden">
-                <img className="w-full mt-20 rounded-s-full bg-fuchsia-800 p-1 max-h-96 object-cover" src={images[currentIndex]} alt={`Slide ${currentIndex + 1}`} />
+                {/* Fixed size for images */}
+                <img 
+                    className="w-full h-40 lg:h-80 mt-20 rounded-s-full object-cover bg-fuchsia-800 p-0.5" 
+                    src={images[currentIndex]} 
+                    alt={`Slide ${currentIndex + 1}`} 
+                />
             </div>
+
+            {/* Left arrow */}
             <button
                 onClick={prevSlide}
-                className="absolute top-72 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+                className="absolute top-2/3 left-2 transform -translate-y-1/2 bg-fuchsia-800 opacity-50 text-white p-2 rounded-full z-1 focus:outline-none lg:left-4"
             >
                 &lt;
             </button>
+
+            {/* Right arrow */}
             <button
                 onClick={nextSlide}
-                className="absolute top-72 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+                className="absolute top-2/3 right-2 transform -translate-y-1/2 bg-fuchsia-800 opacity-50 text-white p-2 rounded-full z-1 focus:outline-none lg:right-4"
             >
                 &gt;
             </button>
