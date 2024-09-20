@@ -8,7 +8,6 @@ const User = require("../models/User"); // Your User model
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID_KEY;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET_KEY;
 
-
 // Local Strategy (Email/Password)
 passport.use(
   new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
