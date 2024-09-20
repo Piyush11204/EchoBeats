@@ -20,14 +20,14 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Session middleware
+// Session middleware (ensure this is before routes)
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 10000, // 24 hours
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
     },
   })
 );
@@ -40,7 +40,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // CORS middleware
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000', 
+    credentials: true
+}));
 
 // JSON parsing middleware
 app.use(express.json());
@@ -48,10 +51,6 @@ app.use(express.json());
 // Routes
 app.use("/auth", localAuthRoute); // Handles email/password login, registration
 app.use('/api/auth', authRoutes); // Handles Google authentication
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 
 // Listen to the port
 app.listen(process.env.PORT, () => {
