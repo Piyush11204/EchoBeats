@@ -8,7 +8,7 @@ interface UserProp {
         photos: { value: string }[];
     };
 }
-
+// user not displaying
 export default function Navbar({ user }: UserProp) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
